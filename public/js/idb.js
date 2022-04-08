@@ -9,19 +9,23 @@ request.onupgradeneeded = function (event) {
   const db = event.target.result;
   // create an object store (table), set it to have an auto incrementing primary key of sorts 
   db.createObjectStore('new_budget', { autoIncrement: true });
-  // upon a successful 
-  request.onsuccess = function (event) {
-    // when db is successfully created with its object store (from onupgradedneeded event above) or simply established a connection, save reference to db in global variable
-    db = event.target.result;
+}
 
-    // check if app is online, if yes run uploadTransaction function to send all local db data to api
-    if (navigator.onLine) {
-      uploadBudget();
-    }
-  };
-  request.onerror = function (event) {
-    console.log(event.target.errorCode);
-  };
+
+// upon a successful 
+request.onsuccess = function (event) {
+  // when db is successfully created with its object store (from onupgradedneeded event above) or simply established a connection, save reference to db in global variable
+  db = event.target.result;
+
+  // check if app is online, if yes run uploadTransaction function to send all local db data to api
+  if (navigator.onLine) {
+    uploadBudget();
+  }
+};
+
+
+request.onerror = function (event) {
+  console.log(event.target.errorCode);
 };
 
 // This function will be executed if we attempt to submit a new tracker and there's no internet connection
@@ -40,14 +44,14 @@ function saveRecord(record) {
 // need function to upload transaction once connection is regained
 
 function uploadBudget() {
-      // open a transaction on your db
-      const transaction = db.transaction(['new_budget'], 'readwrite');
+  // open a transaction on your db
+  const transaction = db.transaction(['new_budget'], 'readwrite');
 
-      // access your object store
-      const trackerObjectStore = transaction.objectStore('new_budget');
-  
-      // get all transactions from store and set to a variable
-      const getAll = trackerObjectStore.getAll();
+  // access your object store
+  const trackerObjectStore = transaction.objectStore('new_budget');
+
+  // get all transactions from store and set to a variable
+  const getAll = trackerObjectStore.getAll();
 
   // upon a successful .getAll() execution, run this function
   getAll.onsuccess = function () {
@@ -71,10 +75,10 @@ function uploadBudget() {
           // clear all items in your store
           trackerObjectStore.clear();
 
-        //   alert('All saved transactions have been submitted!');
-        // })
-        // .catch(err => {
-        //   console.log(err);
+          //   alert('All saved transactions have been submitted!');
+          // })
+          // .catch(err => {
+          //   console.log(err);
         });
     }
   }

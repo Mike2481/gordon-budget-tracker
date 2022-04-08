@@ -89,11 +89,11 @@ e.respondWith(
   //     return response || fetch(e.request);
   //   });
   // })
-  fetch(evt.request).catch(function () {
-    return caches.match(evt.request).then(function (response) {
+  fetch(e.request).catch(function () {
+    return caches.match(e.request).then(function (response) {
         if (response) {
             return response;
-        } else if (evt.request.headers.get('accept').includes('text/html')) {
+        } else if (e.request.headers.get('accept').includes('text/html')) {
             // return the cached home page for all requests for html pages
             return caches.match('/');
         }
