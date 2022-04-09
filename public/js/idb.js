@@ -38,10 +38,9 @@ function saveRecord(record) {
 
   // add record to your store with add method
   trackerObjectStore.add(record);
+  alert('Transaction accepted')
 }
-// this is not working offline...
 
-// need function to upload transaction once connection is regained
 
 function uploadBudget() {
   // open a transaction on your db
