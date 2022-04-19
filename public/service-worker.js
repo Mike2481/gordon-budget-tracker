@@ -2,7 +2,7 @@
 const CACHE_NAME = "static-cache-v1";
 const DATA_CACHE_NAME = "data-cache-v1";
 
-
+// list all files to cache
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
@@ -14,7 +14,7 @@ const FILES_TO_CACHE = [
   "/icons/icon-512x512.png",
   "styles.css"
 ];
-
+// function to all all files to cache
 self.addEventListener("install", function (e) {
   e.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
@@ -35,7 +35,6 @@ self.addEventListener("install", function (e) {
       })
   );
 });
-
 self.addEventListener("activate", function (e) {
   e.waitUntil(
     caches.keys().then(function (keyList) {

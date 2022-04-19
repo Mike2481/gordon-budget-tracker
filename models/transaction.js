@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-
+// require mongoose to set schema
 const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema(
+  // schema to consist of name, value, and date.
   {
     name: {
       type: String,
@@ -15,6 +16,7 @@ const transactionSchema = new Schema(
     },
     date: {
       type: Date,
+      // use date.now for format 
       default: Date.now
     }
   }

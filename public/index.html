@@ -15,6 +15,7 @@
 <body>
   <div class="wrapper">
     <div class="total">
+      <!-- value comes from populateTotal -->
       <div class="total">Your total is: $<span id="total">0</span></div>
     </div>
 
@@ -43,10 +44,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="./js/index.js"></script>
-  <!-- is this the right way to write the path? -->
+  <!-- link to index db -->
   <script src="./js/idb.js"></script>
   <script>
     (function() {
+      // service worker validation
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register("./service-worker.js")
         .then(() => console.log("Service Worker registered successfully."))
